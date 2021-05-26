@@ -1,15 +1,17 @@
+import React, { useState } from 'react';
 import DiceArea from "../molecules/DiceArea"
 
-
 const App = () => {
-  const diceSelected
+  const [diceArray, setDiceArray] = useState([6, 6, 6, 6, 6]);
+  const [diceKeep, setDiceKeep] = useState([false, false, false, false, false]);
 
   return (
     <div className="App">
-      HelloWorld
       <DiceArea
-        diceArray={[1, 2, 3, 4, 5]}
-        diceSelected={[0, 0, 1, 1, 0]}
+        diceArray = {diceArray}
+        diceKeep = {diceKeep}
+        setDiceArray = {setDiceArray}
+        setDiceKeep = {setDiceKeep}
       />
     </div>
   );

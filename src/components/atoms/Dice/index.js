@@ -15,13 +15,20 @@ const selectStyle = {
 }
 
 const Dice = ({
+    idx,
     onClick,
     isSelected,
     style,
     num = 6,
 }) => {
+    style = {...style,
+        display: "inline-block",
+        cursor: 'pointer',
+        height: '0px',
+    }
     return (
         <span
+            id = {"dice"+idx}
             onClick = {onClick}
             style = {isSelected ? {...selectStyle, ...style} : {...style}}>
             {diceIcon[num]}
