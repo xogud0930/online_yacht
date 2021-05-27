@@ -22,16 +22,22 @@ const Dice = ({
     num = 6,
 }) => {
     style = {...style,
-        display: "inline-block",
+        display: 'inline-block',
         cursor: 'pointer',
         height: '0px',
     }
     return (
-        <span
-            id = {"dice"+idx}
-            onClick = {onClick}
-            style = {isSelected ? {...selectStyle, ...style} : {...style}}>
-            {diceIcon[num]}
+        <span style={{display: 'inline-block'}}>
+            <div
+                id = {"dice"+idx}
+                onClick = {onClick}
+                style = {isSelected ? {...selectStyle, ...style} : {...style}}
+            >
+                {diceIcon[num]}
+            </div>
+            <div style={{textAlign: 'center'}}>
+                {num}
+            </div>
         </span>
     )
 };

@@ -1,66 +1,90 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import YachtCal from '../../atoms/YachtCal';
 import Dice from '../../atoms/Dice';
+import "./DiceArea.css"
 
 const DiceArea = ({
+    chance,
     diceArray = [6, 6, 6, 6, 6],
     diceKeep = [0, 0, 0, 0, 0],
+    yachtRanks,
+    currTurn,
+    setChance,
     setDiceArray,
     setDiceKeep,
+    setYachtRanks,
 }) => {
-    const sleep = (ms) => {
-        return new Promise((r) => setTimeout(r, ms));
-    }
     const onClickDice = (idx) => {
         const arr = [...diceKeep];
         arr[idx] = !arr[idx];
         setDiceKeep(arr);
     }
 
-    const setTest = useCallback((arr) => {
-        setDiceArray(arr)
-    })
-
     const onClickButton = async () => {
-        var dices = [...diceArray];
-
-        for (const i in diceArray) {
-            for (const idx in diceArray) {
-                if(!diceKeep[idx]) {
-                    dices[idx] = Math.floor(Math.random() * 6) + 1
-                }
-                console.log(i, dices)
-                setTest(dices)
-            }
-            await sleep(300).then(() => setTest(dices))
+        if(chance != 0) {
+            var interval = setInterval(changeDice, 100);
+            setTimeout(() => {
+                clearInterval(interval);
+                setChance(chance != 0 ? chance - 1 : 0)
+            }, 1000)
         }
-
-        console.log(dices)
-
-        setTest(dices)
     }
 
-    useEffect(() => {
-        console.log("dice", diceArray)
-    }, [diceArray])
+    const changeDice = () => {
+        var dices = [...diceArray];
+
+        for (const idx in diceArray) {
+            if(!diceKeep[idx]) {
+                dices[idx] = Math.floor(Math.random() * 6) + 1
+            }
+        }
+
+        setDiceArray(dices)
+    }
+
+    const checkDice = () => {
+        setChance(3);
+        console.log(diceArray);
+    }
 
     return (
         <div className = 'yht-dicearea'>
-            <div>
-                {diceArray.map((dice, idx) => (
-                    <Dice
-                        idx = {idx}
-                        onClick = {() => onClickDice(idx)}
-                        isSelected = {diceKeep[idx]} 
-                        style = {{fontSize: '100px', cursor: 'pointer', minHeight: "10px"}}
-                        num = {dice}
-                    />
-                ))}
+            <div id="turn">
+                {yachtRanks[currTurn]["Name"]}<br/>
+                Turn
             </div>
-            <button
-                onClick = {() => onClickButton()}
-            >
-                Roll
-            </button>
+            <div id="dices">
+                <div>
+                    {diceArray.map((dice, idx) => (
+                        <Dice
+                            idx = {idx}
+                            onClick = {() => onClickDice(idx)}
+                            isSelected = {diceKeep[idx]} 
+                            style = {{fontSize: '80px', cursor: 'pointer', minHeight: "10px", margin: "10px"}}
+                            num = {dice}
+                        />
+                    ))}
+                </div>
+                <div id="buttons">
+                    <button
+                        onClick = {() => onClickButton()}
+                    >
+                        Roll
+                    </button>
+                    <button
+                        onClick = {() => checkDice()}
+                    >
+                        Check
+                    </button>
+                </div>
+            </div>
+            <YachtCal
+                currTurn = {currTurn}
+                chance = {chance}
+                diceArray = {diceArray}
+                yachtRanks = {yachtRanks}
+                setYachtRanks = {setYachtRanks}
+            />
         </div>
     )
 };

@@ -1,0 +1,31 @@
+
+div.yht-dicearea {
+    vertical-align: middle;
+    margin-bottom: 20px;
+}
+
+.yht-dicearea > div {
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.yht-dicearea > div > div {
+    width: 500px;
+}
+
+.yht-dicearea #dices {
+    text-align: center;
+}
+
+.yht-dicearea button {
+    width: 100px;
+    height: 50px;
+    margin: 20px auto;
+}
+
+.yht-dicearea #turn {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    width: 200px;
+}
