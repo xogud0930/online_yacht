@@ -1,0 +1,22 @@
+/* Room.css */
+
+.yht-room {
+    width: 2300px;
+    -ms-user-select: none; 
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.yht-room #table {
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 50px;
+}
+
+.yht-room #chat {
+    vertical-align:bottom;
+    display: inline-block;
+    margin-left: 40px;
+}

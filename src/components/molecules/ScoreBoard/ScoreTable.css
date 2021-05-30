@@ -1,49 +1,95 @@
 
-.yht-scoretable table, th, td {
-    font-size: 15px;
+.yht-scoretable table,
+.yht-scoretable th,
+.yht-scoretable td {
+    font-size: 20px;
     border-collapse: collapse;
     padding: 5px 10px;
     text-align: center;
 }
 
+.yht-scoretable th#Name {
+    height: 70px;
+    word-wrap:break-word;
+}
+
+.yht-scoretable th.this {
+    background-color: #fff9aa;
+}
+
 .yht-scoretable table {
-    border: 2px solid #000;
-    width: 750px;
+    border: 3px solid #000;
+    width: 1100px;
+}
+
+.yht-scoretable th,
+.yht-scoretable td {
+    border: 1px solid #000;
 }
 
 .yht-scoretable tr#title {
-    border-bottom: 2px solid #000;
+    border-bottom: 3px solid #000;
 }
-.yht-scoretable tr#Total, tr#Choice, tr#Sum {
-    font-weight: bold;
-    border-top: 2px solid #000;
+
+.yht-scoretable tr#Total,
+.yht-scoretable tr#Choice,
+.yht-scoretable tr#Sum {
+    border-top: 3px solid #000;
+}
+
+.yht-scoretable button#Total,
+.yht-scoretable button#Bonus,
+.yht-scoretable button#Sum {
+    font-weight:bold;
 }
 
 .yht-scoretable #Name {
-    width: 75px;
+    width: 85px;
+    max-width: 85px;
 }
 
 .yht-scoretable thead th {
-    background-color: lightgrey;
+    background-color: rgb(176, 213, 218);
+}
+
+.yht-scoretable th {
+    height: 40px;
 }
 
 .yht-scoretable button {
-    width: 60px;
-    border-radius: 5px;
+    font-size: 20px;
+    font-weight:bold;
+    width: 80px;
     background-color: white;
     outline: 0;
     padding: 5px;
 }
 
-.yht-scoretable button:not(#Sum):not(#Bonus):not(#Total) {
-    border: 1px solid;
+.yht-scoretable button:not(#Sum):not(#Bonus):not(#Total):not(.disabled):not(.check-true) {
+    border: 3px solid gray;
+    border-radius: 10px;
 }
 
-.yht-scoretable #Sum, #Bonus, #Total {
+.yht-scoretable button.check-true {
+    border: none
+}
+
+.yht-scoretable .check-false.disabled {
+    color: #00000000;
+}
+
+.yht-scoretable .check-false.zero:not(.disabled) {
+    color: #ff0000;
+}
+
+.yht-scoretable #Sum,
+.yht-scoretable #Bonus,
+.yht-scoretable #Total,
+.yht-scoretable .disabled {
     border-style: none;
 }
 
-.yht-scoretable button:hover:not(#Sum):not(#Bonus):not(#Total) {
+.yht-scoretable button:hover:not(#Sum):not(#Bonus):not(#Total):not(.disabled):not(.check-true) {
     cursor: pointer;
-    background-color: lightpink;
+    background-color: rgb(255, 224, 224);
 }

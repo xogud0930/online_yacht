@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import "./YachtCal.css"
 
 const YachtCal = ({
     currTurn,
@@ -19,7 +18,8 @@ const YachtCal = ({
         })
 
         var duplicationDice = diceArray.reduce((dice, curr) => {
-            dice[curr] = (dice[curr] || 0) + 1;
+            if(curr != "")
+                dice[curr] = (dice[curr] || 0) + 1;
             return dice;
         }, {})
 
@@ -31,50 +31,52 @@ const YachtCal = ({
             return duplicationDice[curr] === 2 | duplicationDice[curr] === 3 | duplicationDice[curr] === 5 ? sum + duplicationDice[curr] : sum
         }, 0);
 
+        console.log(duplicationDice)
+
         setYachtRanks({
             ...yachtRanks,
             [currTurn]:{
                 ...yachtRanks[currTurn],
-                Ones: diceArray.reduce((sum, curr) => {
-                    return curr === 1 ? sum + curr : sum;
-                }, 0),
-                Twos: diceArray.reduce((sum, curr) => {
-                    return curr === 2 ? sum + curr : sum;
-                }, 0),
-                Threes: diceArray.reduce((sum, curr) => {
-                    return curr === 3 ? sum + curr : sum;
-                }, 0),
-                Fours: diceArray.reduce((sum, curr) => {
-                    return curr === 4 ? sum + curr : sum;
-                }, 0),
-                Fives: diceArray.reduce((sum, curr) => {
-                    return curr === 5 ? sum + curr : sum;
-                }, 0),
-                Sixes: diceArray.reduce((sum, curr) => {
-                    return curr === 6 ? sum + curr : sum;
-                }, 0),
-                Choice: sumDice,
-                "4 of a Kind": Object.keys(duplicationDice).reduce((sum, curr) => {
-                    return duplicationDice[curr] === 4 ? sumDice : 0
-                }, 0),
-                "Full House": fullHouseCheck === 5 ? sumDice : 0,
-                "Small Straight": String(combineDice).match(/1234|2345|3456/) != null ? 15 : 0,
-                "Large Straight": String(combineDice).match(/12345|23456/) != null ? 30 : 0,
-                Yacht: Object.keys(duplicationDice).reduce((sum, curr) => {
+                Ones: checkSelect(numSum(1), "Ones"),
+                Twos: checkSelect(numSum(2), "Twos"),
+                Threes: checkSelect(numSum(3), "Threes"),
+                Fours: checkSelect(numSum(4), "Fours"),
+                Fives: checkSelect(numSum(5), "Fives"),
+                Sixes: checkSelect(numSum(6), "Sixes"),
+                Choice: checkSelect(sumDice, "Choice"),
+                "4 of a Kind": checkSelect(Object.keys(duplicationDice).reduce((sum, curr) => {
+                    return duplicationDice[curr] >= 4 ? sum + sumDice : sum
+                }, 0), "4 of a Kind"),
+                "Full House": checkSelect((fullHouseCheck === 5 ? sumDice : 0), "Full House"),
+                "Small Straight": checkSelect((String(combineDice).match(/1234|2345|3456/) != null ? 15 : 0), "Small Straight"),
+                "Large Straight": checkSelect((String(combineDice).match(/12345|23456/) != null ? 30 : 0), "Large Straight"),
+                Yacht: checkSelect(Object.keys(duplicationDice).reduce((sum, curr) => {
                     return duplicationDice[curr] === 5 ? 50 : 0
-                }, 0),
+                }, 0), "Yacht"),
         }})
     };
 
+    const numSum = (n) => {
+        return diceArray.reduce((sum, curr) => {
+            return curr === n ? sum + curr : sum;
+        }, 0)
+    }
+
+    const checkSelect = (func, key) => {
+        if(!yachtRanks[currTurn]["Check"][key]) return func;
+        else return yachtRanks[currTurn][key];
+    }
+
     useEffect(() => {
+        console.log(yachtRanks)
         console.log(yachtRanks)
         console.log(diceArray)
         pointCal();
     }, [chance]);
 
     return (
-        <div>
-        </div>
+        <>
+        </>
     )
 }
 

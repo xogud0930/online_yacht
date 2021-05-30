@@ -1,0 +1,78 @@
+/* ChatArea.css */
+
+:root {
+    --chatarea-width: 1100px;
+    --chatarea-height: 1040px;
+}
+
+.yht-chatarea {
+    font-size: 25px;
+    width: var(--chatarea-width);
+    height: var(--chatarea-height);
+    border-radius: 20px;
+    border: 3px solid #000;
+    display: table-cell;
+    vertical-align: middle;
+    background-color: rgb(242, 252, 255);
+}
+
+.yht-chatarea #area {
+    margin: auto;
+    width: calc(var(--chatarea-width) - 30px);
+    height: calc(var(--chatarea-height) - 35px);
+    border-radius: 15px;
+    border: 3px solid gray;
+    background-color: white;
+}
+
+.yht-chatarea #list {
+    overflow: scroll;
+    padding: 10px 10px;
+    height: calc(var(--chatarea-height) - 170px);
+    /* border-bottom: 3px solid gray; */
+}
+
+.yht-chatarea #time {
+    color: gray;
+}
+
+.yht-chatarea #input {
+    background-color: #00000000;
+    padding: 10px 15px;
+}
+
+.yht-chatarea #input > div {
+    color: lightgray;
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    border-bottom: 3px solid lightgray;
+}
+
+.yht-chatarea #input > span {
+    display: flex;
+}
+
+.yht-chatarea #input input {
+    flex-grow: 1;
+    margin-left: 10px;
+    font-size: 20px;
+    border: 0px none #00000000;
+    outline: 0;
+}
+
+.yht-chatarea #input button {
+    font-size: 20px;
+    font-weight: bold;
+    outline: 0;
+    border: 3px solid gray;
+    border-radius: 15px;
+    background-color: white;
+    height: 40px;
+}
+
+.yht-chatarea #input button:hover {
+    cursor: pointer;
+    background-color: rgb(238, 254, 255);
+}

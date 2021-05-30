@@ -1,7 +1,6 @@
 
-div.yht-dicearea {
+.yht-dicearea {
     vertical-align: middle;
-    margin-bottom: 20px;
 }
 
 .yht-dicearea > div {
@@ -10,7 +9,7 @@ div.yht-dicearea {
 }
 
 .yht-dicearea > div > div {
-    width: 500px;
+    width: 800px;
 }
 
 .yht-dicearea #dices {
@@ -18,14 +17,30 @@ div.yht-dicearea {
 }
 
 .yht-dicearea button {
-    width: 100px;
-    height: 50px;
+    font-size: 30px;
+    font-weight: bold;
+    width: 720px;
+    height: 60px;
     margin: 20px auto;
+    outline: 0;
+    border-radius: 20px;
+    border: 3px solid #000;
+    cursor: pointer;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+}
+
+.yht-dicearea button:hover {
+    background-color: #e9feff;
 }
 
 .yht-dicearea #turn {
-    font-size: 30px;
+    font-size: 25px;
     font-weight: bold;
     text-align: center;
-    width: 200px;
+    width: 300px;
+}
+
+.yht-dicearea #turn > span {
+    font-size: 40px;
 }
