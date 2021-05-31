@@ -1,24 +1,24 @@
 /* ChatArea.css */
 
 :root {
-    --chatarea-width: 1100px;
-    --chatarea-height: 1040px;
+    --chatarea-width: 880px;
+    --chatarea-height: 830px;
 }
 
 .yht-chatarea {
-    font-size: 25px;
+    font-size: 2rem;
     width: var(--chatarea-width);
     height: var(--chatarea-height);
     border-radius: 20px;
     border: 3px solid #000;
-    display: table-cell;
-    vertical-align: middle;
+    display: flex;
+    justify-content: center;
+    align-items:center;
     background-color: rgb(242, 252, 255);
 }
 
 .yht-chatarea #area {
-    margin: auto;
-    width: calc(var(--chatarea-width) - 30px);
+    width: calc(var(--chatarea-width) - 35px);
     height: calc(var(--chatarea-height) - 35px);
     border-radius: 15px;
     border: 3px solid gray;
@@ -27,9 +27,9 @@
 
 .yht-chatarea #list {
     overflow: scroll;
+    text-align: left;
     padding: 10px 10px;
-    height: calc(var(--chatarea-height) - 170px);
-    /* border-bottom: 3px solid gray; */
+    height: calc(var(--chatarea-height) - 165px);
 }
 
 .yht-chatarea #time {
@@ -38,38 +38,42 @@
 
 .yht-chatarea #input {
     background-color: #00000000;
+    text-align: left;
     padding: 10px 15px;
 }
 
 .yht-chatarea #input > div {
     color: lightgray;
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: bold;
     padding-bottom: 5px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     border-bottom: 3px solid lightgray;
 }
 
 .yht-chatarea #input > span {
     display: flex;
+    line-height: 4rem;
 }
 
 .yht-chatarea #input input {
     flex-grow: 1;
     margin-left: 10px;
-    font-size: 20px;
+    font-size: 2rem;
     border: 0px none #00000000;
+    height: 40px;
     outline: 0;
 }
 
 .yht-chatarea #input button {
-    font-size: 20px;
+    font-size: 1.8rem;
     font-weight: bold;
     outline: 0;
     border: 3px solid gray;
     border-radius: 15px;
     background-color: white;
     height: 40px;
+    width: 80px;
 }
 
 .yht-chatarea #input button:hover {

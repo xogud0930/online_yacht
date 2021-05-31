@@ -8,18 +8,14 @@
     display: inline-block;
 }
 
-.yht-dicearea > div > div {
-    width: 800px;
-}
-
 .yht-dicearea #dices {
     text-align: center;
 }
 
 .yht-dicearea button {
-    font-size: 30px;
+    font-size: 3rem;
     font-weight: bold;
-    width: 720px;
+    width: 600px;
     height: 60px;
     margin: 20px auto;
     outline: 0;
@@ -35,12 +31,12 @@
 }
 
 .yht-dicearea #turn {
-    font-size: 25px;
+    font-size: 2rem;
     font-weight: bold;
     text-align: center;
-    width: 300px;
+    width: 250px;
 }
 
 .yht-dicearea #turn > span {
-    font-size: 40px;
+    font-size: 3rem;
 }

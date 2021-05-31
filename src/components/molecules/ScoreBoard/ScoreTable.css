@@ -2,14 +2,14 @@
 .yht-scoretable table,
 .yht-scoretable th,
 .yht-scoretable td {
-    font-size: 20px;
+    font-size: 1.5rem;
     border-collapse: collapse;
     padding: 5px 10px;
     text-align: center;
 }
 
 .yht-scoretable th#Name {
-    height: 70px;
+    height: 50px;
     word-wrap:break-word;
 }
 
@@ -19,7 +19,7 @@
 
 .yht-scoretable table {
     border: 3px solid #000;
-    width: 1100px;
+    width: 880px;
 }
 
 .yht-scoretable th,
@@ -44,22 +44,19 @@
 }
 
 .yht-scoretable #Name {
-    width: 85px;
-    max-width: 85px;
+    width: 70px;
+    max-width: 70px;
 }
 
 .yht-scoretable thead th {
+    height: 25px;
     background-color: rgb(176, 213, 218);
 }
 
-.yht-scoretable th {
-    height: 40px;
-}
-
 .yht-scoretable button {
-    font-size: 20px;
+    font-size: 1.3rem;
     font-weight:bold;
-    width: 80px;
+    width: 70px;
     background-color: white;
     outline: 0;
     padding: 5px;

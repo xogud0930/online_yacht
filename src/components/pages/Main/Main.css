@@ -1,36 +1,35 @@
 /* Main.css */
-
-@font-face {
-    font-family: 'Pacifico';
-    src: url('../../../font/Pacifico-Regular.ttf') format('truetype');
-}
-
 .yht-main {
     width: 100vw;
     height: 90vh;
     text-align: center;
     vertical-align: middle;
     display: table-cell;
-    -ms-user-select: none; 
-    -moz-user-select: -moz-none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
 }
 
 .yht-main #title {
-    font-size: 150px;
+    font-size: 13rem;
     font-family: 'Pacifico';
-    line-height: 150px;
+    line-height: 12rem;
     white-space: pre;
     margin-bottom: 80px;
+    animation: maintitle 2s infinite alternate;
+}
+
+@keyframes maintitle {
+    0% {
+        transform: scale(1.1) rotate(-5deg)
+    }
+    100% {
+        transform: scale(1) rotate(0)
+    }
 }
 
 .yht-main input {
     text-align: center;
-    font-size: 40px;
-    height: 80px;
-    width: 400px;
+    font-size: 3rem;
+    height: 60px;
+    width: 300px;
     border: 5px solid gray;
     outline: 0;
     border-radius: 20px;
@@ -38,11 +37,11 @@
 }
 
 .yht-main button {
-    font-size: 60px;
+    font-size: 5rem;
     font-weight: bold;
     background-color: rgb(191, 219, 255);
-    height: 100px;
-    width: 500px;
+    height: 80px;
+    width: 400px;
     border: none;
     outline: 0;
     border-radius: 50px;
@@ -51,4 +50,6 @@
 .yht-main button:hover {
     cursor: pointer;
     background-color: rgb(165, 191, 224);
+    transition: transform 0.5s linear;
+    transform: scale(1.05);
 }

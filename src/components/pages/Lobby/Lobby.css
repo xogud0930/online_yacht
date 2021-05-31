@@ -1,0 +1,75 @@
+/* Lobby.css */
+.yht-lobby #wrap {
+    margin-top: 10px;
+    display: flex ;
+    justify-content: center;
+    align-items:stretch;
+}
+
+.yht-lobby #roomlist,
+.yht-lobby #playerlist {
+    margin: 0px 30px;
+    flex-grow: 1;
+    border: 5px solid gray;
+    border-radius: 20px;
+}
+
+.yht-lobby #wrap #title {
+    margin: 10px 20px;
+    padding-bottom: 5px;
+    font-size: 2.5rem;
+    text-align: right;
+    color: gray;
+    font-weight: bold;
+    border-bottom: 8px double gray;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.yht-lobby #wrap #title div {
+    flex: 1;
+}
+
+.yht-lobby #wrap #title span {
+    color: rgb(255, 99, 51);
+}
+
+.yht-lobby #header {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.yht-lobby #header span {
+    flex: 1;
+}
+
+.yht-lobby #header #title {
+    text-align: center;
+    font-size: 4rem;
+    font-weight: bold;
+    font-family: 'Pacifico';
+}
+
+.yht-lobby #header #button {
+    text-align: right;
+}
+
+.yht-lobby #header #button button {
+    font-size: 2rem;
+    font-weight: bold;
+    height: 50px;
+    width: 130px;
+    outline: 0;
+    border: 3px solid gray;
+    border-radius: 10px;
+    background-color: white;
+    margin-top: 10px;
+    margin-right: 40px;
+}
+
+.yht-lobby button:hover {
+    cursor: pointer;
+    background-color: rgb(255, 238, 238);
+}

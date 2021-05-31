@@ -81,7 +81,7 @@ const ChatArea = () => {
             seconds: addZero(today.getSeconds()),
         };
         
-        return(`${time.year}/${time.month}/${time.date} ${time.hours}:${time.minutes}:${time.seconds}`)
+        return(`${time.year}/${time.month}/${time.date}+${time.hours}:${time.minutes}:${time.seconds}`)
     }
 
     return (
@@ -99,7 +99,7 @@ const ChatArea = () => {
                 <div id = "input">
                     <div>Message</div>
                     <span>
-                        {name} :
+                        {name} : 
                         <input
                             name = 'message'
                             value = {chatMsg.message}

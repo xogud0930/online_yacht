@@ -1,0 +1,17 @@
+/* App.css */
+@font-face {
+    font-family: 'Pacifico';
+    src: url('../../font/Pacifico-Regular.ttf') format('truetype');
+}
+
+html {
+    font-size: 62.5%
+}
+
+.App {
+    -ms-user-select: none; 
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}

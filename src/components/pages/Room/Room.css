@@ -1,22 +1,45 @@
 /* Room.css */
 
 .yht-room {
-    width: 2300px;
-    -ms-user-select: none; 
-    -moz-user-select: -moz-none;
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    user-select: none;
+    width: 1850px;
 }
 
 .yht-room #table {
     display: inline-block;
-    margin-top: 10px;
-    margin-left: 50px;
+    margin-left: 30px;
 }
 
 .yht-room #chat {
     vertical-align:bottom;
     display: inline-block;
     margin-left: 40px;
+}
+
+.yht-room #chat #header {
+    height: 50px;
+    display: flex;
+    margin: 20px 0px;
+}
+
+.yht-room #chat #player {
+    flex-grow: 1;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.yht-room #chat #header button {
+    font-size: 2rem;
+    font-weight: bold;
+    height: 50px;
+    width: 130px;
+    margin-right: 10px;
+    outline: 0;
+    border: 3px solid gray;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.yht-room #chat #header button:hover {
+    cursor: pointer;
+    background-color: rgb(255, 238, 238);
 }

@@ -13,7 +13,7 @@ const Main = (props) => {
     const onClickButton = () => {
         if(name !== '') {
             window.sessionStorage.setItem("userName", name);
-            props.history.push("/room");
+            props.history.push("/lobby");
         }
     }
     
@@ -30,7 +30,7 @@ const Main = (props) => {
 
     return (
         <div className = "yht-main">
-            <div id = "title">
+            <div id = "title" className = "maintitle">
                 Online&nbsp;&nbsp;&nbsp;<br/>&nbsp;&nbsp;&nbsp;
                 Yacht
             </div>
@@ -47,6 +47,7 @@ const Main = (props) => {
             </div>
             <div>
                 <button
+                    className = "transbutton"
                     onClick = {() => onClickButton()}
                 >
                     Play Game

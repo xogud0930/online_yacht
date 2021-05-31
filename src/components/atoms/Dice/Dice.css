@@ -1,15 +1,15 @@
 /* Dice.css */
 
 .yht-dice div {
-    font-size: 130px;
+    font-size: 10rem;
     display: inline-block;
     height: 0px;
     min-height: 10px;
-    margin: 10px;
+    margin: 0px 10px;
 }
 
 .yht-dice span {
-    font-size: 24px;
+    font-size: 2.5rem;
     display: block;
     text-align: center;
     font-weight: bold;

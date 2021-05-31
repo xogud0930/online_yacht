@@ -111,6 +111,10 @@ const Room = () => {
                 />
             </div>
             <div id = "chat">
+                <div id = "header">
+                    <div id = "player">Player {countUser} / 8</div>
+                    <button>Leave</button>
+                </div>
                 <ChatArea />
             </div>
         </div>
