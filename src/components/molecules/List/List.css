@@ -9,7 +9,7 @@
 }
 
 .yht-list button {
-    padding: 0px 20px;
+    padding: 0px 10px;
     font-size: 2rem;
     font-weight: bold;
     outline: 0;
@@ -26,8 +26,8 @@
     background-color: rgb(255, 255, 232);
     border-radius: 10px 10px 0px 0px;
 
-    transition: transform 0.5s linear;
-    transform: scale(1.03)
+    transition: transform 0.1s linear;
+    transform: scale(1.01)
 }
 
 .yht-list button > span {
@@ -35,16 +35,26 @@
     text-align: left;
 }
 
-.yht-list button > p {
+.yht-list button #state {
     margin-right: 20px;
 }
 
-.yht-list button > span > span {
+.yht-list button > span > p {
+    display: inline;
     color: gray;
 }
 
-.yht-list button .off {
+.yht-list .player span + p {
+    font-size: 1.5rem;
+    color: gray;
+}
+
+.yht-list .room .off {
     color: red;
+}
+
+.yht-list .player .off {
+    color: rgb(255, 123, 0);
 }
 
 .yht-list button .on {

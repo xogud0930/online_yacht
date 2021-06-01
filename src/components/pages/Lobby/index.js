@@ -27,7 +27,7 @@ const Lobby = (props) => {
         <div className = 'yht-lobby'>
             <div id = 'header'>
                 <span></span>
-                <span id = 'title'>Online Yacht</span>
+                <span id = 'title' className = "subtitle">Online Yacht</span>
                 <span id = 'button'>
                     <button
                         onClick = {() => onClickLeave()}

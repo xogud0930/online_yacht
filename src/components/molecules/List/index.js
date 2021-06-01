@@ -4,8 +4,8 @@ import Room from '../../pages/Room';
 import "./List.css"
 
 const List = ({
-    lists = ['test'],
-    type = 'room',
+    lists,
+    type,
     joinRoom,
 }) => {
 
@@ -21,15 +21,16 @@ const List = ({
                             onClick = {() => joinRoom(idx)}
                         >
                             <span>
-                            Room {idx + 1} <span>&#40; {list.player} / 8 &#41;</span>
+                            Room {idx + 1} <p>&#40; {list.player} / 8 &#41;</p>
                             </span>
                             <BsCircleFill className = {list.state}/>
                         </button> :
                         <button
                             className = 'player'
                         >
-                            <p><BsCircleFill className = 'on'/></p>
+                            <p id = 'state'><BsCircleFill className = {list.state}/></p>
                             <span>{list.name}</span>
+                            <p>{list.state === 'off' ? `Game in Room ${list.room}` : ""}</p>
                         </button>
                     }
                 </>)) : null}

@@ -1,9 +1,6 @@
 import React, { useEffect } from 'react';
 import "./ScoreTable.css";
 
-import socketio from 'socket.io-client';
-const socket = socketio.connect('http://localhost:6050');
-
 const ScoreTable = ({
     countUser,
     chance,

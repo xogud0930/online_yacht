@@ -33,7 +33,7 @@ const ChatArea = ({
     const onSend = async () => {
         if(chatMsg.message !== '') {
             socket.emit('chat-msg', {
-                type: 'none',
+                type: 'CHAT',
                 name: chatMsg.name,
                 message: chatMsg.message,
                 time: getTime(),
@@ -56,13 +56,17 @@ const ChatArea = ({
     const joinRoom = () => {
         console.log(`${name} ${room} join`)
 
-        socket.emit('room-join', chatMsg);
+        if(room === 'lobby')
+            socket.emit('lobby-join', chatMsg);
+        else {
+            socket.emit('room-join', chatMsg);
+        }
     }
 
     useEffect(() => {
-        console.log('upload')
         socket.on('chat-upload', (msg) => {
             console.log(msg.room, msg.name)
+
             setRecentChat({
                 type: msg.type,
                 name: msg.name,
@@ -81,61 +85,41 @@ const ChatArea = ({
                 type: msg.type,
                 name: msg.name,
                 message: msg.message,
+                id: msg.id,
                 time: msg.time,
             });
-            
-            var findName = playerList !== '' &&
-                playerList.find((list) => {
-                    console.log('name :', list.name)
-                    console.log('msgname :', msg.name)
-                    if(list.name === msg.name) return true;
-                })
 
-            if(findName) {
-                console.log(findName);
-            }
-            else {
-                setRecentList({name: msg.name, id: msg.id, room: msg.room})
-            }
+            socket.emit('chat-list', msg)
         })
     }, [])
 
     useEffect(() => {
         joinRoom();
+
+        return() => {
+            socket.close();
+        }
     }, [])
 
     useEffect(() => {
         if(leaveState !== '' && leaveState !== 'leave') {
-            socket.emit('chat-leave', chatMsg);
-            var templist = {...playerList};
-            var findName = playerList !== '' &&
-                playerList.find((list) => {
-                    console.log('name :', list.name)
-                    console.log('msgname :', leaveState.name)
-                    if(list.name === leaveState.name) {
-                        return true;
-                    }
-                })
+
+            if(room === 'lobby')
+                socket.emit('lobby-leave', chatMsg);
+            else
+                socket.emit('room-leave', chatMsg);
 
             setLeaveState('leave');
         }
     }, [leaveState])
 
     useEffect(async () => {
-        if(await recentChat.message?.length > 0)
+        if(await recentChat.message?.length > 0 && recentChat.type !== 'NONE')
             setChatLog([...chatLog, recentChat]);
         
         scrollToBottom();
         setRecentChat('');
     }, [recentChat])
-
-    useEffect(() => {
-        if(recentList !== '') {
-            console.log('rl', recentList)
-            socket.emit('chat-list', {room: chatMsg.room, list: [...playerList, recentList]});
-            setRecentList('');
-        }
-    }, [recentList])
 
     const getTime = () => {
         let today = new Date();
@@ -167,7 +151,7 @@ const ChatArea = ({
                     { chatLog !== '' ?
                     chatLog.map((log, idx) => (
                         <div>
-                            {log.type !== 'SYSTEM' ?
+                            {log.type === 'CHAT' ?
                                 <>
                                     <span id = "time">&#91;{log.time}&#93;</span>
                                     <span> {log.name} : {log.message}</span>

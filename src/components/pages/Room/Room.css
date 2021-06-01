@@ -1,7 +1,11 @@
 /* Room.css */
 
 .yht-room {
-    width: 1850px;
+    display: flex ;
+    justify-content: center;
+    align-items:stretch;
+    align-content: center;
+    align-items: center;
 }
 
 .yht-room #table {
