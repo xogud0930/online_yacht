@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import DiceArea from '../../molecules/DiceArea';
 import ScoreTable from '../../molecules/ScoreBoard';
 import ChatArea from '../../molecules/ChatArea';
+import Loading from '../../atoms/Loading';
 import "./Room.css"
 
 const user = {
@@ -40,7 +41,9 @@ const user = {
     }
 }
 
-const Room = () => {
+const Room = (props) => {
+    const { roomList, playerList, setPlayerList } = props;
+    const { params } = props.match;
     const name = window.sessionStorage.getItem('userName');
     const [diceArray, setDiceArray] = useState(["", "", "", "", ""]);
     const [diceKeep, setDiceKeep] = useState([false, false, false, false, false]);
@@ -48,6 +51,7 @@ const Room = () => {
     const [round, setRound] = useState(1);
     const [currTurn, setCurrTurn] = useState(0);
     const [countUser, setCountUser] = useState(0);
+    const [leaveState, setLeaveState] = useState('');
     const [rollState, setRollState] = useState(true);
     const [yachtRanks, setYachtRanks] = useState({
         0:{ ...user, Name: name },
@@ -68,11 +72,21 @@ const Room = () => {
         setCountUser(n);
     };
 
+    const onClickLeave = () => {
+        setLeaveState({name: name, room: params.id});
+    }
+
     useEffect(() => {
         console.log("start")
         updateCountUser();
         console.log("CC", countUser, chance)
     }, [])
+
+    useEffect(() => {
+        if(leaveState === 'leave') {
+            props.history.push('/lobby');
+        }
+    }, [leaveState])
 
     return (
         <div className = "yht-room">
@@ -113,10 +127,20 @@ const Room = () => {
             <div id = "chat">
                 <div id = "header">
                     <div id = "player">Player {countUser} / 8</div>
-                    <button>Leave</button>
+                    <button
+                        onClick = {() => onClickLeave()}
+                    >Leave</button>
                 </div>
-                <ChatArea />
+                <ChatArea
+                    room = {params.id}
+                    playerList = {playerList}
+                    setPlayerList = {setPlayerList}
+                    leaveState = {leaveState}
+                    setLeaveState = {setLeaveState}
+                />
             </div>
+
+            <Loading timer = {500}/>
         </div>
     )
 }

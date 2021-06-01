@@ -6,14 +6,32 @@ import Lobby from '../pages/Lobby';
 import Main from '../pages/Main';
 
 const App = () => {
+  const name = window.sessionStorage.getItem('userName');
+  const [roomList, setRommList] = useState([
+      {player: 2, state: 'on'},
+      {player: 4, state: 'off'},
+  ])
+  const [playerList, setPlayerList] = useState('');
 
   return (
     <div className="App">
       <Router>
         <Switch>
           <Route exact path="/" render={props => <Main {...props} />}/>
-          <Route path="/lobby" render={props => <Lobby {...props} />}/>
-          <Route path="/room" render={props => <Room {...props} />}/>
+          <Route path="/lobby" render={props =>
+            <Lobby
+              roomList = {roomList}
+              playerList = {playerList}
+              setPlayerList = {setPlayerList}
+              {...props}
+            />}/>
+          <Route path="/room/:id" render={props =>
+            <Room
+              roomList = {roomList}
+              playerList = {playerList}
+              setPlayerList = {setPlayerList}
+              {...props}
+          />}/>
         </Switch>
       </Router>
     </div>

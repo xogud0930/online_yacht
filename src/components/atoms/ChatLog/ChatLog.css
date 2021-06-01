@@ -1,4 +1,4 @@
-/* ChatArea.css */
+/* ChatLog.css */
 
 :root {
     --chatarea-width: 880px;
@@ -34,6 +34,10 @@
 
 .yht-chatarea #time {
     color: gray;
+}
+
+.yht-chatarea #system {
+    font-weight: bold;
 }
 
 .yht-chatarea #input {

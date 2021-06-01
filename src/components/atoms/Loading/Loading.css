@@ -1,0 +1,21 @@
+/* Loading.css */
+.spincontainer {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #ffffffe0;
+    z-index: 1;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.spincontainer .loader > div {
+    font-size: 3rem;
+    font-weight: bold;
+    color: rgb(0, 98, 209);
+}
