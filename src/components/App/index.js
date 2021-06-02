@@ -7,10 +7,7 @@ import Main from '../pages/Main';
 
 const App = () => {
   const name = window.sessionStorage.getItem('userName');
-  const [roomList, setRommList] = useState([
-      {player: 2, state: 'on'},
-      {player: 4, state: 'off'},
-  ])
+  const [roomList, setRoomList] = useState('')
   const [playerList, setPlayerList] = useState('');
 
   return (
@@ -21,6 +18,7 @@ const App = () => {
           <Route path="/lobby" render={props =>
             <Lobby
               roomList = {roomList}
+              setRoomList = {setRoomList}
               playerList = {playerList}
               setPlayerList = {setPlayerList}
               {...props}
@@ -28,6 +26,7 @@ const App = () => {
           <Route path="/room/:id" render={props =>
             <Room
               roomList = {roomList}
+              setRoomList = {setRoomList}
               playerList = {playerList}
               setPlayerList = {setPlayerList}
               {...props}

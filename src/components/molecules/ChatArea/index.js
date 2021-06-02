@@ -4,11 +4,12 @@ import socketio from 'socket.io-client';
 
 const ChatArea = ({
     room,
+    roomList,
+    setRoomList,
     playerList,
     setPlayerList,
-    leaveState,
-    setLeaveState,
-    path,
+    roomState,
+    setRoomState,
 }) => {
     const [socket, setSocket] = useState();
 
@@ -22,10 +23,12 @@ const ChatArea = ({
             <ChatLog
                 socket = {socket}
                 room = {room}
+                roomList = {roomList}
+                setRoomList = {setRoomList}
                 playerList = {playerList}
                 setPlayerList = {setPlayerList}
-                leaveState = {leaveState}
-                setLeaveState = {setLeaveState}
+                roomState = {roomState}
+                setRoomState = {setRoomState}
             /> : null}
         </>
     )

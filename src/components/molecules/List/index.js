@@ -18,10 +18,10 @@ const List = ({
                     { type === 'room' ?
                         <button
                             className = 'room'
-                            onClick = {() => joinRoom(idx)}
+                            onClick = {() => joinRoom(list.id)}
                         >
                             <span>
-                            Room {idx + 1} <p>&#40; {list.player} / 8 &#41;</p>
+                            Room {list.id + 1} <p>&#40; {list.player} / 8 &#41;</p>
                             </span>
                             <BsCircleFill className = {list.state}/>
                         </button> :
@@ -30,7 +30,7 @@ const List = ({
                         >
                             <p id = 'state'><BsCircleFill className = {list.state}/></p>
                             <span>{list.name}</span>
-                            <p>{list.state === 'off' ? `Game in Room ${list.room}` : ""}</p>
+                            <p>{list.state === 'off' ? `Game in Room ${Number(list.room) + 1}` : ""}</p>
                         </button>
                     }
                 </>)) : null}

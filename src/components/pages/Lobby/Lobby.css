@@ -63,11 +63,15 @@
     }
 }
 
-.yht-lobby #header #button {
+.yht-lobby #header #lobby-leave {
     text-align: right;
 }
 
-.yht-lobby #header #button button {
+.yht-lobby #header #create-room {
+    text-align: left;
+}
+
+.yht-lobby #header > span > button {
     font-size: 2rem;
     font-weight: bold;
     height: 50px;
@@ -78,9 +82,11 @@
     background-color: white;
     margin-top: 10px;
     margin-right: 40px;
+    margin-left: 40px;
+    line-height: 1.8rem;
 }
 
-.yht-lobby #header #button button:hover {
+.yht-lobby #header > span > button:hover {
     cursor: pointer;
     background-color: rgb(255, 238, 238);
 }

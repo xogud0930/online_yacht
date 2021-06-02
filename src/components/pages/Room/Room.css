@@ -22,13 +22,21 @@
 .yht-room #chat #header {
     height: 50px;
     display: flex;
+    align-items: center;
     margin: 20px 0px;
 }
 
 .yht-room #chat #player {
     flex-grow: 1;
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: bold;
+}
+
+.yht-room #chat #roomnum {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-left: 40px;
+    margin-right: 20px;
 }
 
 .yht-room #chat #header button {

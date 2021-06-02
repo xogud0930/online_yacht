@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DiceArea from '../../molecules/DiceArea';
 import ScoreTable from '../../molecules/ScoreBoard';
 import ChatArea from '../../molecules/ChatArea';
@@ -42,7 +42,7 @@ const user = {
 }
 
 const Room = (props) => {
-    const { roomList, playerList, setPlayerList } = props;
+    const { roomList, setRoomList, playerList, setPlayerList } = props;
     const { params } = props.match;
     const name = window.sessionStorage.getItem('userName');
     const [diceArray, setDiceArray] = useState(["", "", "", "", ""]);
@@ -51,7 +51,7 @@ const Room = (props) => {
     const [round, setRound] = useState(1);
     const [currTurn, setCurrTurn] = useState(0);
     const [countUser, setCountUser] = useState(0);
-    const [leaveState, setLeaveState] = useState('');
+    const [roomState, setRoomState] = useState('');
     const [rollState, setRollState] = useState(true);
     const [yachtRanks, setYachtRanks] = useState({
         0:{ ...user, Name: name },
@@ -63,30 +63,23 @@ const Room = (props) => {
         6:{ ...user },
         7:{ ...user },
     });
-    
-    const updateCountUser = () => {
-        var n = 0;
-        Object.values(yachtRanks).map((user, idx) => {
-            if(user.Name != "") n++;
-        })
-        setCountUser(n);
-    };
 
     const onClickLeave = () => {
-        setLeaveState({name: name, room: params.id});
+        setRoomState('room-leave');
     }
 
     useEffect(() => {
-        console.log("start")
-        updateCountUser();
-        console.log("CC", countUser, chance)
-    }, [])
+        console.log('param', roomList, params.id)
+        if(roomList[params.id]) {
+            setCountUser(roomList[params.id].player);
+        }
+    }, [roomList[params.id]])
 
     useEffect(() => {
-        if(leaveState === 'leave') {
+        if(roomState === 'leave') {
             props.history.push('/lobby');
         }
-    }, [leaveState])
+    }, [roomState])
 
     return (
         <div className = "yht-room">
@@ -126,17 +119,20 @@ const Room = (props) => {
             </div>
             <div id = "chat">
                 <div id = "header">
-                    <div id = "player">Player {countUser} / 8</div>
+                    <div id = "roomnum">Room {Number(params.id) + 1}</div>
+                    <div id = "player">&#40;Player {countUser} / 8&#41;</div>
                     <button
                         onClick = {() => onClickLeave()}
                     >Leave</button>
                 </div>
                 <ChatArea
                     room = {params.id}
+                    roomList = {roomList}
+                    setRoomList = {setRoomList}
                     playerList = {playerList}
                     setPlayerList = {setPlayerList}
-                    leaveState = {leaveState}
-                    setLeaveState = {setLeaveState}
+                    roomState = {roomState}
+                    setRoomState = {setRoomState}
                 />
             </div>
 

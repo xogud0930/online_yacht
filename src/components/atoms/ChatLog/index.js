@@ -4,10 +4,12 @@ import "./ChatLog.css";
 const ChatArea = ({
     socket,
     room,
+    roomList,
+    setRoomList,
     playerList,
     setPlayerList,
-    leaveState,
-    setLeaveState,
+    roomState,
+    setRoomState,
 }) => {
     const name = window.sessionStorage.getItem('userName');
 
@@ -20,7 +22,6 @@ const ChatArea = ({
     })
     const [chatLog, setChatLog] = useState('')
     const [recentChat, setRecentChat] = useState('');
-    const [recentList, setRecentList] = useState('');
 
     const handleChange = (e) => {
         const { value, name } = e.target;
@@ -65,31 +66,41 @@ const ChatArea = ({
 
     useEffect(() => {
         socket.on('chat-upload', (msg) => {
-            console.log(msg.room, msg.name)
+            console.log(msg.room, room, msg.name, msg.message)
 
-            setRecentChat({
-                type: msg.type,
-                name: msg.name,
-                message: msg.message,
-                time: msg.time,
-            });
+            if(room === msg.room) {
+                setRecentChat({
+                    type: msg.type,
+                    name: msg.name,
+                    message: msg.message,
+                    time: msg.time,
+                });
+            }
         })
 
-        socket.on('chat-list', (list) => {
+        socket.on('player-list', (list) => {
             console.log('res: ', list)
             setPlayerList(list);
         })
 
-        socket.on('chat-join', (msg) => {
-            setRecentChat({
-                type: msg.type,
-                name: msg.name,
-                message: msg.message,
-                id: msg.id,
-                time: msg.time,
-            });
+        socket.on('player-join', (msg) => {
 
-            socket.emit('chat-list', msg)
+            if(room === msg.room) {
+                setRecentChat({
+                    type: msg.type,
+                    name: msg.name,
+                    message: msg.message,
+                    id: msg.id,
+                    time: msg.time,
+                });
+            }
+
+            socket.emit('player-list', msg)
+        })
+
+        socket.on('room-list', (list) => {
+            console.log('resRoomList: ', list)
+            setRoomList(list);
         })
     }, [])
 
@@ -102,16 +113,17 @@ const ChatArea = ({
     }, [])
 
     useEffect(() => {
-        if(leaveState !== '' && leaveState !== 'leave') {
+        console.log('roomState:', roomState)
+        if(roomState !== '' && roomState === 'room-add') {
+            socket.emit('room-add');
 
-            if(room === 'lobby')
-                socket.emit('lobby-leave', chatMsg);
-            else
-                socket.emit('room-leave', chatMsg);
+            setRoomState('room-join');
+        } else if(roomState !== '' && (roomState === 'lobby-leave' | roomState === 'room-leave')) {
+            socket.emit(roomState, chatMsg);
 
-            setLeaveState('leave');
+            setRoomState('leave');
         }
-    }, [leaveState])
+    }, [roomState])
 
     useEffect(async () => {
         if(await recentChat.message?.length > 0 && recentChat.type !== 'NONE')

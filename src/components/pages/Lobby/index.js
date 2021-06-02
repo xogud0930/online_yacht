@@ -5,30 +5,42 @@ import Loading from '../../atoms/Loading';
 import "./Lobby.css"
 
 const Lobby = (props) => {
-    const { roomList, playerList, setPlayerList } = props;
+    const { roomList, setRoomList, playerList, setPlayerList } = props;
     const name = window.sessionStorage.getItem('userName');
-    const [leaveState, setLeaveState] = useState('');
+    const [roomState, setRoomState] = useState('');
 
     const joinRoom = (id) => {
         props.history.push("/room/" + id);
     }
 
     const onClickLeave = () => {
-        setLeaveState({name: name, room: 'lobby'});
+        setRoomState('lobby-leave');
+    }
+
+    const onClickCreateRoom = () => {
+        setRoomState('room-add');
     }
 
     useEffect(() => {
-        if(leaveState === 'leave') {
+        if(roomState === 'leave') {
             props.history.push('/');
+        } else if (roomState === 'room-join') {
+            props.history.push("/lobby");
         }
-    }, [leaveState])
+    }, [roomState])
 
     return (
         <div className = 'yht-lobby'>
             <div id = 'header'>
-                <span></span>
+                <span id = 'create-room'>
+                    <button
+                        onClick = {() => onClickCreateRoom()}
+                    >
+                        Create Room
+                    </button>
+                </span>
                 <span id = 'title' className = "subtitle">Online Yacht</span>
-                <span id = 'button'>
+                <span id = 'lobby-leave'>
                     <button
                         onClick = {() => onClickLeave()}
                     >
@@ -50,10 +62,12 @@ const Lobby = (props) => {
                 </div>
                 <ChatArea
                     room = 'lobby'
+                    rommList = {roomList}
+                    setRoomList = {setRoomList}
                     playerList = {playerList}
                     setPlayerList = {setPlayerList}
-                    leaveState = {leaveState}
-                    setLeaveState = {setLeaveState}
+                    roomState = {roomState}
+                    setRoomState = {setRoomState}
                 />
                 <div id = 'playerlist'>
                     <div id = 'title'>
