@@ -66,16 +66,17 @@ const DiceArea = ({
 
     return (
         <div className = 'yht-dicearea'>
-            <div id="turn">
+            <div key = 'turn' id="turn">
                 {round} / 12 round<br/><br/>
                 <span>{yachtRanks[currTurn]["Name"]}<br/></span>
                 Turn<br/>
                 {chance} / 3
             </div>
-            <div id="dices">
-                <div>
+            <div key = 'dices' id="dices">
+                <div key = 'dicesarray'>
                     {diceArray.map((dice, idx) => (
                         <Dice
+                            id = {idx}
                             onClick = {() => onClickDice(idx)}
                             isSelected = {diceKeep[idx]} 
                             num = {dice}

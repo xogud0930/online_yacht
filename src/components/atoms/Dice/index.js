@@ -14,13 +14,14 @@ const diceIcon = {
 };
 
 const Dice = ({
+    id,
     onClick,
     isSelected,
     num,
 }) => {
 
     return (
-        <span className = "yht-dice" style={{display: 'inline-block'}}>
+        <span key = {'dice-'+id} className = "yht-dice" style={{display: 'inline-block'}}>
             <div
                 className = {(num === ""  ? "disabled" : "active") + (isSelected ? " isSelected" : "")}
                 onClick = {onClick}

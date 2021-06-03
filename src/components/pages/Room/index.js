@@ -55,7 +55,7 @@ const Room = (props) => {
     const [rollState, setRollState] = useState(true);
     const [yachtRanks, setYachtRanks] = useState({
         0:{ ...user, Name: name },
-        1:{ ...user, Name: "MaeGunBoong" },
+        1:{ ...user, Name: 'tester' },
         2:{ ...user },
         3:{ ...user },
         4:{ ...user },
@@ -67,6 +67,14 @@ const Room = (props) => {
     const onClickLeave = () => {
         setRoomState('room-leave');
     }
+
+    useEffect(() => {
+        var temp = {...yachtRanks};
+        
+        Object.values(temp).map((item, idx) => {
+            console.log(item.Name)
+        })
+    }, [countUser])
 
     useEffect(() => {
         console.log('param', roomList, params.id)

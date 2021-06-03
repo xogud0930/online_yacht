@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./ChatLog.css";
 
 const ChatArea = ({
@@ -45,7 +45,7 @@ const ChatArea = ({
     }
 
     const onKeyPress = (e) => {
-        if(e.key == 'Enter') {
+        if(e.key === 'Enter') {
             onSend();
         }
     }
@@ -80,6 +80,31 @@ const ChatArea = ({
 
         socket.on('player-list', (list) => {
             console.log('res: ', list)
+
+            list.sort((a, b) => {
+                let x = a.name.toLowerCase();
+                let y = b.name.toLowerCase();
+                if (x < y) {
+                    return -1;
+                }
+                if (x > y) {
+                    return 1;
+                }
+                return 0;
+            });
+            list.sort((a, b) => {
+                let x = a.state.toLowerCase();
+                let y = b.state.toLowerCase();
+                if (x < y) {
+                    return 1;
+                }
+                if (x > y) {
+                    return -1;
+                }
+                return 0;
+            });
+            
+
             setPlayerList(list);
         })
 
@@ -162,7 +187,7 @@ const ChatArea = ({
                 <div id = "list">
                     { chatLog !== '' ?
                     chatLog.map((log, idx) => (
-                        <div>
+                        <div key = {'message-'+idx}>
                             {log.type === 'CHAT' ?
                                 <>
                                     <span id = "time">&#91;{log.time}&#93;</span>

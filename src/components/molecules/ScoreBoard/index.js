@@ -16,8 +16,6 @@ const ScoreTable = ({
     setDiceKeep,
     rollState,
 }) => {
-    const count = [ 0, 1, 2, 3, 4, 5, 6, 7 ]
-
     const onClickPoint = (user, key) => {
         if(!yachtRanks[user]["Check"][key] & chance != 3 & rollState) {
             setYachtRanks({
@@ -94,7 +92,7 @@ const ScoreTable = ({
                 <thead>
                     <tr id="title">
                         <th>Categories</th>
-                        {count.map(($, n) => (
+                        {Object.keys(yachtRanks).map((n) => (
                             <th id = "Name" className = {n == currTurn ? "this" : ""}>
                                 <span>{yachtRanks[n]["Name"]}</span>
                             </th>
@@ -108,7 +106,7 @@ const ScoreTable = ({
                             (key != "Name" && key != "Check") ?
                             <tr id = {key}>
                                 <th>{key}</th>
-                                {count.map(($, n) => (
+                                {Object.keys(yachtRanks).map((n) => (
                                     <td>
                                         {yachtRanks[n]["Name"] !== "" ?
                                         <button
