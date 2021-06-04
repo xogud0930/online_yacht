@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import DiceArea from '../../molecules/DiceArea';
 import ScoreTable from '../../molecules/ScoreBoard';
-import ChatArea from '../../molecules/ChatArea';
+import ChatArea from '../../atoms/ChatArea';
 import Loading from '../../atoms/Loading';
 import "./Room.css"
 
@@ -42,7 +42,7 @@ const user = {
 }
 
 const Room = (props) => {
-    const { roomList, setRoomList, playerList, setPlayerList } = props;
+    const { socket, roomList, setRoomList, playerList, setPlayerList } = props;
     const { params } = props.match;
     const name = window.sessionStorage.getItem('userName');
     const [diceArray, setDiceArray] = useState(["", "", "", "", ""]);
@@ -134,6 +134,7 @@ const Room = (props) => {
                     >Leave</button>
                 </div>
                 <ChatArea
+                    socket = {socket}
                     room = {params.id}
                     roomList = {roomList}
                     setRoomList = {setRoomList}

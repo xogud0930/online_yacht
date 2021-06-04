@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import ChatArea from '../../molecules/ChatArea';
+import ChatArea from '../../atoms/ChatArea';
 import List from '../../molecules/List';
 import Loading from '../../atoms/Loading';
 import "./Lobby.css"
 
 const Lobby = (props) => {
-    const { roomList, setRoomList, playerList, setPlayerList } = props;
+    const { socket, roomList, setRoomList, playerList, setPlayerList } = props;
     const name = window.sessionStorage.getItem('userName');
     const [roomState, setRoomState] = useState('');
 
@@ -61,6 +61,7 @@ const Lobby = (props) => {
                     />
                 </div>
                 <ChatArea
+                    socket = {socket}
                     room = 'lobby'
                     rommList = {roomList}
                     setRoomList = {setRoomList}

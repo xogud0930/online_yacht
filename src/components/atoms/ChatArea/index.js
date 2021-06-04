@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import "./ChatLog.css";
+import "./ChatArea.css";
 
 const ChatArea = ({
     socket,
@@ -59,14 +59,13 @@ const ChatArea = ({
 
         if(room === 'lobby')
             socket.emit('lobby-join', chatMsg);
-        else {
+        else
             socket.emit('room-join', chatMsg);
-        }
     }
 
     useEffect(() => {
         socket.on('chat-upload', (msg) => {
-            console.log(msg.room, room, msg.name, msg.message)
+            console.log(msg.room, msg.name, msg.message)
 
             if(room === msg.room) {
                 setRecentChat({
@@ -103,24 +102,8 @@ const ChatArea = ({
                 }
                 return 0;
             });
-            
 
             setPlayerList(list);
-        })
-
-        socket.on('player-join', (msg) => {
-
-            if(room === msg.room) {
-                setRecentChat({
-                    type: msg.type,
-                    name: msg.name,
-                    message: msg.message,
-                    id: msg.id,
-                    time: msg.time,
-                });
-            }
-
-            socket.emit('player-list', msg)
         })
 
         socket.on('room-list', (list) => {
@@ -132,9 +115,9 @@ const ChatArea = ({
     useEffect(() => {
         joinRoom();
 
-        return() => {
-            socket.close();
-        }
+        // return() => {
+        //     socket.close();
+        // }
     }, [])
 
     useEffect(() => {
