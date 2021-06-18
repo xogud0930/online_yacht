@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import "./ScoreTable.css";
+
+import { clearDice } from '../../redux/modules/dice'
 
 const ScoreTable = ({
     countUser,
@@ -11,11 +14,10 @@ const ScoreTable = ({
     setRound,
     yachtRanks,
     setYachtRanks,
-    diceArray,
-    setDiceArray,
-    setDiceKeep,
     rollState,
 }) => {
+    const dispatch = useDispatch();
+
     const onClickPoint = (user, key) => {
         if(!yachtRanks[user]["Check"][key] & chance != 3 & rollState) {
             setYachtRanks({
@@ -30,9 +32,7 @@ const ScoreTable = ({
             });
             setChance(3);
             nextTurn();
-            setDiceArray(["", "", "", "", ""])
-            setDiceKeep([false, false, false, false, false])
-            console.log(diceArray);
+            dispatch(clearDice());
         }
     }
 

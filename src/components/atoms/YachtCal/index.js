@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 const YachtCal = ({
     currTurn,
     chance,
-    diceArray,
     yachtRanks,
     setYachtRanks,
 }) => {
+    const diceArray = useSelector(state => state.dice.array);
+    
     const pointCal = () => {
-        var tempDice = [...new Set(diceArray)]
+        var tempDice = [...new Set(diceArray)];
+
         tempDice.sort((a, b) => {
             return a - b;
         });

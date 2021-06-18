@@ -4,7 +4,7 @@ import { CgDice1, CgDice2, CgDice3, CgDice4, CgDice5, CgDice6  } from "react-ico
 import "./Dice.css"
 
 const diceIcon = {
-    "": <FaSquare />,
+    0: <FaSquare />,
     1: <CgDice1 />,
     2: <CgDice2 />,
     3: <CgDice3 />,
@@ -29,7 +29,7 @@ const Dice = ({
                 {diceIcon[num]}
             </div>
             <span>
-                {num}
+                {num != 0 ? num : ''}
             </span>
         </span>
     )

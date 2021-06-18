@@ -1,7 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import YachtCal from '../../atoms/YachtCal';
 import Dice from '../../atoms/Dice';
 import "./DiceArea.css"
+
+import { setDice, setKeepState } from '../../redux/modules/dice'
 
 const DiceArea = ({
     countUser,
@@ -9,10 +12,6 @@ const DiceArea = ({
     setChance,
     round,
     setRound,
-    diceArray = [6, 6, 6, 6, 6],
-    setDiceArray,
-    diceKeep = [0, 0, 0, 0, 0],
-    setDiceKeep,
     yachtRanks,
     setYachtRanks,
     currTurn,
@@ -20,12 +19,16 @@ const DiceArea = ({
     rollState,
     setRollState,
 }) => {
+    const dispatch = useDispatch();
+    const diceArray = useSelector(state => state.dice.array)
+    const diceKeep = useSelector(state => state.dice.keepState)
+
     const onClickDice = (idx) => {
         if(chance != 3 & rollState) {
             const arr = [...diceKeep];
-            if(diceArray[idx] != "")
+            if(diceArray[idx] != 0)
                 arr[idx] = !arr[idx];
-            setDiceKeep(arr);
+            dispatch(setKeepState(arr));
         }
     }
 
@@ -50,7 +53,7 @@ const DiceArea = ({
             }
         }
 
-        setDiceArray(dices)
+        dispatch(setDice(dices));
     }
 
     const nextTurn = () => {
@@ -95,7 +98,6 @@ const DiceArea = ({
                 currTurn = {currTurn}
                 chance = {chance}
                 countUser = {countUser}
-                diceArray = {diceArray}
                 yachtRanks = {yachtRanks}
                 setYachtRanks = {setYachtRanks}
             />

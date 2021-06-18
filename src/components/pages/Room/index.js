@@ -4,6 +4,7 @@ import ScoreTable from '../../molecules/ScoreBoard';
 import ChatArea from '../../atoms/ChatArea';
 import Loading from '../../atoms/Loading';
 import "./Room.css"
+import { useDispatch, useSelector } from 'react-redux';
 
 const user = {
     Name: "",
@@ -45,8 +46,6 @@ const Room = (props) => {
     const { socket, roomList, setRoomList, playerList, setPlayerList } = props;
     const { params } = props.match;
     const name = window.sessionStorage.getItem('userName');
-    const [diceArray, setDiceArray] = useState(["", "", "", "", ""]);
-    const [diceKeep, setDiceKeep] = useState([false, false, false, false, false]);
     const [chance, setChance] = useState(3);
     const [round, setRound] = useState(1);
     const [currTurn, setCurrTurn] = useState(0);
@@ -98,14 +97,10 @@ const Room = (props) => {
                     setChance = {setChance}
                     round = {round}
                     setRound = {setRound}
-                    diceArray = {diceArray}
-                    setDiceArray = {setDiceArray}
                     yachtRanks = {yachtRanks}
                     setYachtRanks = {setYachtRanks}
                     currTurn = {currTurn}
                     setCurrTurn = {setCurrTurn}
-                    diceKeep = {diceKeep}
-                    setDiceKeep = {setDiceKeep}
                     rollState = {rollState}
                     setRollState = {setRollState}
                 />
@@ -119,9 +114,6 @@ const Room = (props) => {
                     setRound = {setRound}
                     yachtRanks = {yachtRanks}
                     setYachtRanks = {setYachtRanks}
-                    diceArray = {diceArray}
-                    setDiceArray = {setDiceArray}
-                    setDiceKeep = {setDiceKeep}
                     rollState = {rollState}
                 />
             </div>
