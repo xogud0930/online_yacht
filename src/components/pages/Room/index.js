@@ -54,7 +54,7 @@ const Room = (props) => {
     const [rollState, setRollState] = useState(true);
     const [yachtRanks, setYachtRanks] = useState({
         0:{ ...user, Name: name },
-        1:{ ...user, Name: 'tester' },
+        1:{ ...user },
         2:{ ...user },
         3:{ ...user },
         4:{ ...user },

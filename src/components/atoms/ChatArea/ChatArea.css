@@ -40,6 +40,10 @@
     font-weight: bold;
 }
 
+.yht-chatarea #message {
+    font-weight: bold;
+}
+
 .yht-chatarea #input {
     background-color: #00000000;
     text-align: left;
@@ -58,12 +62,14 @@
 .yht-chatarea #input > span {
     display: flex;
     line-height: 4rem;
+    font-weight: bold;
 }
 
 .yht-chatarea #input input {
     flex-grow: 1;
     margin-left: 10px;
     font-size: 2rem;
+    font-weight: inherit;
     border: 0px none #00000000;
     height: 40px;
     outline: 0;

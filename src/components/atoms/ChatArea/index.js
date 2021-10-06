@@ -174,7 +174,7 @@ const ChatArea = ({
                             {log.type === 'CHAT' ?
                                 <>
                                     <span id = "time">&#91;{log.time}&#93;</span>
-                                    <span> {log.name} : {log.message}</span>
+                                    <span id = "message"> {log.name} : {log.message}</span>
                                 </> :
                                 <>
                                     <span id = 'system'>&#60;SYSTEM&#62; {log.message}</span>

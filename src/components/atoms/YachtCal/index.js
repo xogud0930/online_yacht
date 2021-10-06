@@ -72,9 +72,9 @@ const YachtCal = ({
 
     useEffect(() => {
         console.log(yachtRanks)
-        console.log(yachtRanks)
         console.log(diceArray)
         pointCal();
+        console.log(yachtRanks)
     }, [chance]);
 
     return (

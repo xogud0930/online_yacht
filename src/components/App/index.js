@@ -13,7 +13,8 @@ const App = () => {
   const [socket, setSocket] = useState();
 
     useEffect(() => {
-        setSocket(socketio.connect('http://localhost:6050'));
+        setSocket(socketio.connect('https://onlineyacht-server.herokuapp.com'));
+        //setSocket(socketio.connect('http://localhost:6050'));
     }, [])
 
   return (
